@@ -1,0 +1,31 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="col">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <td>Наименование</td>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Описание</td>
+                        <td>{{ object.description }}</td>
+                    </tr>
+                    <tr>
+                        <td>Изображение</td>
+                        <td>{{ object.image }}</td>
+                    </tr>
+                    <tr>
+                        <td>Цена</td>
+                        <td>{{ object.price }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'catalog:home' %}" class="btn btn-primary"><< Назад</a>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
