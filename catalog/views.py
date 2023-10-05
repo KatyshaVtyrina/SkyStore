@@ -19,9 +19,11 @@ class ProductCreateView(CreateView):
     success_url = reverse_lazy('catalog:home')
 
 
-# class ProductUpdateView(UpdateView):
-#     model = Product
-#     template_name = 'catalog/includes/product_detail.html'
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ('title', 'description', 'image', 'category', 'price')
+    success_url = reverse_lazy('catalog:home')
+
 #
 #
 # class ProductDelete(DeleteView):
