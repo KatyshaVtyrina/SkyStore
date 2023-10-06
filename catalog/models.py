@@ -37,12 +37,12 @@ class Category(models.Model):
 
 class Post(models.Model):
     name = models.CharField(max_length=150, verbose_name='заголовок')
-    slug = models.CharField(max_length=150, verbose_name='slug')
+    slug = models.CharField(max_length=150, verbose_name='slug', **NULLABLE)
     content = models.TextField(verbose_name='содержимое')
     image = models.ImageField(upload_to='products/', verbose_name='изображение', **NULLABLE)
     created_at = models.DateTimeField(verbose_name='дата создания', auto_now_add=True)
     published = models.BooleanField(verbose_name='признак публикации', default=True)
-    view_count = models.PositiveIntegerField(verbose_name='количество просмотров', default=0)
+    views_count = models.PositiveIntegerField(verbose_name='количество просмотров', default=0)
 
     def __str__(self):
         return f'{self.name} {self.slug}'
@@ -52,9 +52,9 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
         ordering = ('-created_at',)
 
-    def increase_view_count(self):
+    def increase_views_count(self):
         """
         Увеличивает просмотры поста на 1.
         """
-        self.view_count += 1
+        self.views_count += 1
         self.save()
