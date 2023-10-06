@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from catalog.models import Product
+from catalog.models import Product, Post
 
 
 class ProductListView(ListView):
@@ -32,3 +32,7 @@ class ProductDeleteView(DeleteView):
 
 def display_contacts(request):
     return render(request, 'catalog/contacts.html')
+
+
+class PostListView(ListView):
+    model = Post
