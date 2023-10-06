@@ -11,6 +11,8 @@
                         </ul>
                         <p><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></p>
                         <p><a class="btn btn-secondary" href="{% url 'catalog:post' object.pk %}" role="button">Посмотреть &raquo;</a></p>
+                        <p><a class="btn btn-warning" href="{% url 'catalog:update_post' object.pk %}" role="button">Изменить &raquo;</a></p>
+                        <p><a class="btn btn-danger" href="{% url 'catalog:delete_post' object.pk %}" role="button">Удалить &raquo;</a></p>
 
 
                     </div>
