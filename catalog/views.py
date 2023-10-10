@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from pytils.translit import slugify
@@ -39,8 +39,7 @@ class PostListView(ListView):
     model = Post
 
     def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset()
-        queryset.filter(published=True)
+        queryset = Post.objects.filter(published=True)
         return queryset
 
 
@@ -48,9 +47,9 @@ class PostDetailView(DetailView):
     model = Post
 
     def get_object(self, queryset=None):
-        views = super().get_object(queryset)
-        views.increase_views_count()
-        return views
+        post = super().get_object(queryset)
+        post.increase_views_count()
+        return post
 
 
 class PostCreateView(CreateView):
@@ -88,3 +87,15 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy('catalog:post_list')
+
+
+def toggle_publish(pk):
+    post = get_object_or_404(Post, pk=pk)
+    if post.published:
+        post.published = False
+    else:
+        post.published = True
+
+    post.save()
+
+    return redirect(reverse('catalog:post_list'))
