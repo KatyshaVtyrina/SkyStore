@@ -3,6 +3,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from pytils.translit import slugify
 
+from catalog.forms import ProductForm
 from catalog.models import Product, Post
 
 
@@ -16,19 +17,19 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = ('title', 'description', 'image', 'category', 'price')
-    success_url = reverse_lazy('catalog:product_list')
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
 
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ('title', 'description', 'image', 'category', 'price')
-    success_url = reverse_lazy('catalog:product_list')
+    form_class = ProductForm
+    success_url = reverse_lazy('catalog:home')
 
 
 class ProductDeleteView(DeleteView):
     model = Product
-    success_url = reverse_lazy('catalog:product_list')
+    success_url = reverse_lazy('catalog:home')
 
 
 def display_contacts(request):
@@ -87,15 +88,3 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     success_url = reverse_lazy('catalog:post_list')
-
-
-def toggle_publish(pk):
-    post = get_object_or_404(Post, pk=pk)
-    if post.published:
-        post.published = False
-    else:
-        post.published = True
-
-    post.save()
-
-    return redirect(reverse('catalog:post_list'))
