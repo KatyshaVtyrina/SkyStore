@@ -63,3 +63,17 @@ class Post(models.Model):
         """
         self.views_count += 1
         self.save()
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
+    number_version = models.IntegerField(verbose_name='номер версии')
+    title_version = models.CharField(max_length=150, verbose_name='название версии')
+    is_active = models.BooleanField(verbose_name='признак текущей версии', default=True)
+
+    def __str__(self):
+        return f'{self.title_version} ({self.product})'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
