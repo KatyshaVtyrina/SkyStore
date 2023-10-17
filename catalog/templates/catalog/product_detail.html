@@ -2,31 +2,31 @@
 {% block content %}
 {% load mediapath %}
 <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <td>Наименование</td>
-                        <td>{{ object.title }}</td>
-                    </tr>
-                    <tr>
-                        <td>Описание</td>
-                        <td>{{ object.description }}</td>
-                    </tr>
-                    <tr>
-                        <td>Изображение</td>
-                        <td><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></td>
-                    </tr>
-                    <tr>
-                        <td>Цена</td>
-                        <td>{{ object.price }}</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'catalog:home' %}" class="btn btn-primary"><< Назад</a>
-                </a>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td>Наименование</td>
+                    <td>{{ object.title }}</td>
+                </tr>
+                <tr>
+                    <td>Описание</td>
+                    <td>{{ object.description }}</td>
+                </tr>
+                <tr>
+                    <td>Изображение</td>
+                    <td><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></td>
+                </tr>
+                <tr>
+                    <td>Цена</td>
+                    <td>{{ object.price }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'catalog:home' %}" class="btn btn-primary"><< Назад</a>
+            </a>
         </div>
     </div>
+</div>
 {% endblock %}

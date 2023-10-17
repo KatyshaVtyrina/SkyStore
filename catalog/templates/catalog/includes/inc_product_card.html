@@ -10,6 +10,17 @@
             <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                 <li>{{object.description|truncatechars:100}}</li>
             </ul>
+            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+
+                {% for version in object.version_set.all %}
+                {% if version.is_active %}
+
+                <div><strong>Активная версия: </strong> {{ version.number_version}} - {{ version.title_version}}</div>
+                {% endif %}
+                {% endfor %}
+
+            </ul>
+
             <p><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></p>
             <p><a class="btn btn-secondary" href="{% url 'catalog:product' object.pk %}" role="button">Посмотреть &raquo;</a></p>
             <p><a class="btn btn-warning" href="{% url 'catalog:update' object.pk %}" role="button">Изменить &raquo;</a></p>
