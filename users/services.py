@@ -11,3 +11,12 @@ def send_code_email(user: User):
         settings.EMAIL_HOST_USER,
         [user.email]
     )
+
+
+def send_new_password(email, new_password):
+    send_mail(
+        'Вы сменили пароль!',
+        f'Ваш новый пароль: {new_password}',
+        settings.EMAIL_HOST_USER,
+        [email]
+    )
