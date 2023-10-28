@@ -18,6 +18,10 @@
                     <td><img src="{% mediapath object.image %}" width="150" height="120" alt="Картинка"></td>
                 </tr>
                 <tr>
+                    <td>Создатель</td>
+                    <td>{{ object.created_by|default:"Не указан" }}</td>
+                </tr>
+                <tr>
                     <td>Цена</td>
                     <td>{{ object.price }}</td>
                 </tr>

@@ -1,6 +1,8 @@
 from django.db import models
 from pytils.translit import slugify
 
+from config import settings
+
 NULLABLE = {'blank': True, 'null': True}
 
 
@@ -12,6 +14,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='цена за покупку')
     date_of_creation = models.DateTimeField(verbose_name='дата создания', auto_now_add=True)
     date_of_change = models.DateTimeField(verbose_name='дата последнего изменения', auto_now=True)
+
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='Кем создан', **NULLABLE)
 
     def __str__(self):
         return f'{self.title} - {self.price} рублей'
