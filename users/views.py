@@ -1,5 +1,4 @@
 from random import random
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
@@ -36,7 +35,6 @@ def verification_user(request):
     user.is_verification = True
 
 
-@login_required
 def generate_new_password(request):
     new_password = ''.join([str(random.randint(0, 9)) for _ in range(10)])
 
