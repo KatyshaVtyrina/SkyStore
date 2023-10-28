@@ -7,4 +7,5 @@ SkyStore - проект интернет-магазина.
 -создать базу данных 'skystore' и внести изменения в константе DATABASE в файле settings;
 -добавить в базу данных категории c помощью фикстуры - python3 manage.py loaddata data/categories.json;
 -добавить в базу данных продукты с помощью команды fill - python3 manage.py fill 
--добавить в базу данных посты с помощью команды add_posts - python3 manage.py add_posts 
+-добавить в базу данных посты с помощью команды add_posts - python3 manage.py add_posts
+-для отправки писем на почту изменить значения EMAIL_HOST_USER, EMAIL_HOST_PASSWORD в файле settings.py на свои
