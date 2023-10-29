@@ -1,4 +1,6 @@
 from random import random
+
+from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
@@ -32,7 +34,10 @@ class ProfileView(UpdateView):
 def verification_user(request):
     pk = request['pk']
     user = User.objects.get(pk=pk)
-    user.is_verification = True
+    user.is_active = True
+    user.save()
+    login(request, user)
+    return redirect(to=reverse('users:login'))
 
 
 def generate_new_password(request):
