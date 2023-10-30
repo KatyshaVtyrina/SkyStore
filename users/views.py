@@ -1,4 +1,4 @@
-from random import random
+import random
 
 from django.contrib.auth import login
 from django.shortcuts import redirect, get_object_or_404
