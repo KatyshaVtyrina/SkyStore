@@ -47,5 +47,5 @@ def generate_new_password(request):
 
     request.user.set_password(new_password)
     request.user.save()
-    send_new_password(request.user.email, new_password)
-    return redirect(reverse('catalog:home'))
+    send_new_password(email=request.user.email, new_password=new_password)
+    return redirect(reverse('users:profile'))
