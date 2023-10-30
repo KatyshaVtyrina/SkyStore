@@ -1,7 +1,7 @@
 from random import random
 
 from django.contrib.auth import login
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
 
@@ -33,13 +33,13 @@ class ProfileView(UpdateView):
         return self.request.user
 
 
-def verification_user(request):
-    pk = request['pk']
-    user = User.objects.get(pk=pk)
+def verification_user(request, user_pk):
+    """Верификация почты, после прохождения по ссылке перенаправляет на личные данные"""
+    user = get_object_or_404(User, pk=user_pk)
     user.is_active = True
     user.save()
     login(request, user)
-    return redirect(to=reverse('users:login'))
+    return redirect(reverse('users:profile'))
 
 
 def generate_new_password(request):
