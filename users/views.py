@@ -18,6 +18,8 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         obj = form.save()
+        obj.is_active = False
+        obj.save()
         send_code_email(obj)
         return super().form_valid(form)
 
