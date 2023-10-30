@@ -12,7 +12,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('verification/<int:user_pk>/', verification_user, name='verification'),
-    path('recovery_password/', PasswordResetView.as_view(template_name='users/password_reset.html'),
-         name='recovery_password'),
-    path('', generate_new_password, name='generate_password')
+    # path('recovery_password/', PasswordResetView.as_view(template_name='users/password_reset.html'),
+    #      name='recovery_password'),
+    path('profile/generate_new_password/', generate_new_password, name='generate_new_password')
 ]
